@@ -2,14 +2,31 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
-
+import { toast } from "react-toastify";
+import { PostNewuser } from "../helper/axiosHelper";
 const SignUpForm = () => {
   const [formInput, setFormInput] = useState({});
 
+  //   Tracking the values and names
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    setFormInput({ ...formInput, [name]: value });
   };
+
+  //   Tracking the submitted values
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const { confirmpassword, ...rest } = formInput;
+
+    if (confirmpassword !== rest.password) {
+      return toast.error("Password doesnot match");
+    }
+
+    const { status, message } = await PostNewuser(rest);
+    toast[status](message);
+  };
+
   // Creating array for the form
   const inputField = [
     {
@@ -44,7 +61,7 @@ const SignUpForm = () => {
   return (
     <div className="border rounded p-4">
       <h4 className="mb-4"> SignUP NOW !!</h4>
-      <Form>
+      <Form onSubmit={handleOnSubmit}>
         {inputField.map((input) => (
           <CustomInput key={input.name} {...input} onChange={handleOnChange} />
         ))}

@@ -7,10 +7,10 @@ const SignUP = () => {
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded">
-        <Col md>
+        <Col md={6}>
           <FinancialTips />
         </Col>
-        <Col md>
+        <Col md={6}>
           <SignUpForm />
         </Col>
       </Row>
