@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 
 const Footer = () => {
   return (
-    <Container fluid className="bg-dark p-4 ">
+    <Container fluid className="bg-dark p-3 ">
       <Row className="d-flex justify-content-center">
         &copy; Copy Rights all reserved.|| Made By Bishes
       </Row>

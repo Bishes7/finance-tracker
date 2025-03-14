@@ -4,14 +4,18 @@ import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { PostNewuser } from "../helper/axiosHelper";
-const SignUpForm = () => {
-  const [formInput, setFormInput] = useState({});
+import { useForm } from "../CustomHook/useForm";
 
-  //   Tracking the values and names
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setFormInput({ ...formInput, [name]: value });
-  };
+const initialstate = {
+  name: "",
+  email: "",
+  password: "",
+  confirmpassword: "",
+};
+
+const SignUpForm = () => {
+  const { handleOnChange, formInput, setFormInput } = useForm(initialstate);
+  // const [formInput, setFormInput] = useState({});
 
   //   Tracking the submitted values
   const handleOnSubmit = async (e) => {
@@ -25,6 +29,8 @@ const SignUpForm = () => {
 
     const { status, message } = await PostNewuser(rest);
     toast[status](message);
+
+    status === "success" && setFormInput(initialstate);
   };
 
   // Creating array for the form
@@ -35,6 +41,7 @@ const SignUpForm = () => {
       required: true,
       type: "text",
       name: "name",
+      value: formInput.name,
     },
     {
       label: "Email",
@@ -42,6 +49,7 @@ const SignUpForm = () => {
       required: true,
       type: "email",
       name: "email",
+      value: formInput.email,
     },
     {
       label: "Password",
@@ -49,6 +57,7 @@ const SignUpForm = () => {
       required: true,
       type: "password",
       name: "password",
+      value: formInput.password,
     },
     {
       label: "Confirm Password",
@@ -56,6 +65,7 @@ const SignUpForm = () => {
       required: true,
       type: "password",
       name: "confirmpassword",
+      value: formInput.confirmpassword,
     },
   ];
   return (

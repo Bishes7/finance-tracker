@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { GrMoney } from "react-icons/gr";
 
 const financialQuotes = [
   {
@@ -79,6 +80,9 @@ const FinancialTips = () => {
       className="d-flex flex-column justify-content-center "
       style={{ height: "100%" }}
     >
+      <div className="text-success" style={{ fontSize: "10rem" }}>
+        <GrMoney />
+      </div>
       <h4>{tip}</h4>
       <div className="fw-bolder">"{quote}"</div>
       <p>-{expert}-</p>

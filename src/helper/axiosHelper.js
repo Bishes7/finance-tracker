@@ -1,4 +1,5 @@
 import axios from "axios";
+import { data } from "react-router-dom";
 
 const rootUrlEP = "http://localhost:8000/api/v1";
 
@@ -23,6 +24,17 @@ export const PostNewuser = (data) => {
   const obj = {
     method: "post",
     url: rootUrlEP + "/users",
+    data,
+  };
+  return apiProcessor(obj);
+};
+
+// Login User
+
+export const loginUser = (data) => {
+  const obj = {
+    method: "post",
+    url: rootUrlEP + "/users/login",
     data,
   };
   return apiProcessor(obj);
