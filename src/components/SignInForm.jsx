@@ -17,8 +17,13 @@ const SigninForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    const { status, message, user, accessToken } = await loginUser(formInput);
+    const pendingResp = loginUser(formInput);
+    toast.promise(pendingResp, {
+      pending: "Please wait...",
+    });
+    const { status, message, user, accessToken } = await pendingResp;
     toast[status](message);
+
     console.log(user, accessToken);
   };
 
