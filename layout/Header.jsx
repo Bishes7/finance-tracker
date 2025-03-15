@@ -5,6 +5,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { ImExit } from "react-icons/im";
 import { TbLogin } from "react-icons/tb";
 import { MdCreate } from "react-icons/md";
+import { GrDashboard } from "react-icons/gr";
+import { GiCash } from "react-icons/gi";
 
 import { Link } from "react-router-dom";
 
@@ -21,6 +23,12 @@ const Header = () => {
             </Link>
             <Link className="nav-link" to="/">
               LogIN <TbLogin />
+            </Link>
+            <Link className="nav-link" to="/dashboard">
+              Dashboard <GrDashboard />
+            </Link>
+            <Link className="nav-link" to="/transactions">
+              Transactions <GiCash />
             </Link>
             <Link className="nav-link" to="/logout">
               logOUT <ImExit />

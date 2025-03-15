@@ -5,6 +5,7 @@ import { BsGraphDownArrow } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
 import SigninForm from "../components/SignInForm";
 
+// Actual Page
 const Login = () => {
   return (
     <Container className="p-5">
