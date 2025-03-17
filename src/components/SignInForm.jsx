@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { loginUser } from "../helper/axiosHelper";
+import { useUser } from "./context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
+  const { user, setUser } = useUser(); //destructure the value of the useUser
   const [formInput, setFormInput] = useState({});
   //   Tracking the values and names
+
+  // Use useNavigate to redirect to the desired page
+  const navigate = useNavigate();
+
+  // Using useEffect to redirect users to the dashboard
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user?._id, navigate]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setFormInput({ ...formInput, [name]: value });
@@ -25,6 +36,7 @@ const SigninForm = () => {
     toast[status](message);
 
     console.log(user, accessToken);
+    setUser(user);
   };
 
   // Creating array for the form
@@ -53,7 +65,7 @@ const SigninForm = () => {
         ))}
 
         <div className="d-grid">
-          <Button variant="primary" type="submit" onSubmit={handleOnSubmit}>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </div>

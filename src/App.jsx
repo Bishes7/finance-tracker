@@ -7,6 +7,7 @@ import SignUP from "./pages/SignUP";
 import DefaultLayout from "../layout/DefaultLayout";
 import Transactions from "./pages/Transactions";
 import DashBoard from "./pages/Dashboard";
+import { Auth } from "./auth/Auth";
 
 function App() {
   return (
@@ -15,8 +16,22 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<SignUP />} />
-          <Route path="transactions" element={<Transactions />} />
-          <Route path="dashboard" element={<DashBoard />} />
+          <Route
+            path="transactions"
+            element={
+              <Auth>
+                <Transactions />
+              </Auth>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <Auth>
+                <DashBoard />
+              </Auth>
+            }
+          />
         </Route>
       </Routes>
       <ToastContainer />

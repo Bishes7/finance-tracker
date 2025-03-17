@@ -7,6 +7,8 @@ import SigninForm from "../components/SignInForm";
 
 // Actual Page
 const Login = () => {
+  // const { user, setUser } = useUser(); //destructure the value of the useUser
+
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded">
