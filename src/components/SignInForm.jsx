@@ -37,6 +37,8 @@ const SigninForm = () => {
 
     console.log(user, accessToken);
     setUser(user);
+
+    localStorage.setItem("accessToken", accessToken);
   };
 
   // Creating array for the form

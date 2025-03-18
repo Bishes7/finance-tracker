@@ -9,8 +9,20 @@ import { GrDashboard } from "react-icons/gr";
 import { GiCash } from "react-icons/gi";
 
 import { Link } from "react-router-dom";
+import { useUser } from "../src/components/context/UserContext";
+import { toast } from "react-toastify";
 
 const Header = () => {
+  const { user, setUser } = useUser();
+  // Function to logout the user
+  const handleOnLogOut = () => {
+    // First remove the jwtToken from localstorage
+    localStorage.removeItem("accessToken");
+    toast.dark("Logged Out Successfully");
+
+    setUser({});
+  };
+
   return (
     <Navbar expand="lg" variant="dark" className="bg-body-dark">
       <Container>
@@ -18,21 +30,28 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" to="/signup">
-              SignUP <MdCreate />
-            </Link>
-            <Link className="nav-link" to="/">
-              LogIN <TbLogin />
-            </Link>
-            <Link className="nav-link" to="/dashboard">
-              Dashboard <GrDashboard />
-            </Link>
-            <Link className="nav-link" to="/transactions">
-              Transactions <GiCash />
-            </Link>
-            <Link className="nav-link" to="/logout">
-              logOUT <ImExit />
-            </Link>
+            {user?._id ? (
+              <>
+                <Link className="nav-link" to="/dashboard">
+                  Dashboard <GrDashboard />
+                </Link>
+                <Link className="nav-link" to="/transactions">
+                  Transactions <GiCash />
+                </Link>
+                <Link className="nav-link" to="/" onClick={handleOnLogOut}>
+                  logOUT <ImExit />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link" to="/signup">
+                  SignUP <MdCreate />
+                </Link>
+                <Link className="nav-link" to="/">
+                  LogIN <TbLogin />
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

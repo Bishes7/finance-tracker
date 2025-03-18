@@ -7,7 +7,7 @@ import SignUpForm from "../components/SignUpForm";
 const DashBoard = () => {
   return (
     <Container className="p-5">
-      <Row className="bg-dark p-5 rounded">
+      <Row className="bg-dark p-5 rounded"> 
         <Col md={6}>Hello</Col>
       </Row>
     </Container>

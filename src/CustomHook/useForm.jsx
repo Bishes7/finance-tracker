@@ -8,7 +8,7 @@ export const useForm = (initialstate) => {
     setFormInput,
     handleOnChange: (e) => handleOnChange({ e, formInput, setFormInput }),
   };
-};
+};     
 
 //   Tracking the values and names
 export const handleOnChange = ({ e, formInput, setFormInput }) => {

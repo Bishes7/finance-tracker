@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Container fluid className="bg-dark p-3 ">
       <Row className="d-flex justify-content-center">
-        &copy; Copy Rights all reserved.|| Made By Bishes
+        &copy; Copy Rights all reserved.|| Made By Bishes 
       </Row>
     </Container>
   );

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { data } from "react-router-dom";
 
 const rootUrlEP = "http://localhost:8000/api/v1";
 

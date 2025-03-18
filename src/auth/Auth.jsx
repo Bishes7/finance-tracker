@@ -6,3 +6,4 @@ export const Auth = ({ children }) => {
   const { user } = useUser();
   return user?._id ? children : <Navigate to="/" replace />;
 };
+
