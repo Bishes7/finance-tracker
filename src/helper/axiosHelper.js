@@ -2,12 +2,17 @@ import axios from "axios";
 
 const rootUrlEP = "http://localhost:8000/api/v1";
 
-const apiProcessor = async ({ method, url, data }) => {
+// Function to call the JWT Token
+const accessJWT = () => {
+  return localStorage.getItem("accessToken");
+};
+const apiProcessor = async ({ method, url, data, headers }) => {
   try {
     const response = await axios({
       method,
       url,
       data,
+      headers,
     });
     return response.data;
   } catch (error) {
@@ -45,5 +50,9 @@ export const getUser = () => {
   const obj = {
     method: "get",
     url: rootUrlEP + "/users/",
+    headers: {
+      Authorization: accessJWT(),
+    },
   };
+  return apiProcessor(obj);
 };

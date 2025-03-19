@@ -8,8 +8,22 @@ import DefaultLayout from "../layout/DefaultLayout";
 import Transactions from "./pages/Transactions";
 import DashBoard from "./pages/Dashboard";
 import { Auth } from "./auth/Auth";
+import { useEffect } from "react";
+import { useUser } from "./components/context/UserContext";
+import { autoLogin } from "./utils/Users";
 
 function App() {
+  const { user, setUser } = useUser(); // desctructuring from context api
+
+  useEffect(() => {
+    !user?._id && invokeUsers();
+  }, [user?._id]);
+
+  const invokeUsers = async () => {
+    const user = await autoLogin();
+    setUser(user);
+  };
+
   return (
     <div className="wrapper">
       <Routes>
