@@ -13,7 +13,7 @@ const apiProcessor = async ({ method, url, data }) => {
   } catch (error) {
     return {
       status: "error",
-      message: error.message,
+      message: error?.response?.data?.error || error.message,
     };
   }
 };
@@ -37,4 +37,13 @@ export const loginUser = (data) => {
     data,
   };
   return apiProcessor(obj);
+};
+
+// Get User
+
+export const getUser = () => {
+  const obj = {
+    method: "get",
+    url: rootUrlEP + "/users/",
+  };
 };
