@@ -11,5 +11,3 @@ export const autoLogin = async () => {
     // mount the user in the state
   }
 };
-
-g;

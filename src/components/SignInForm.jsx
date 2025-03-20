@@ -5,9 +5,12 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { loginUser } from "../helper/axiosHelper";
 import { useUser } from "./context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
+  const location = useLocation(); //to locate the path
+  console.log(location);
+
   const { user, setUser } = useUser(); //destructure the value of the useUser
   const [formInput, setFormInput] = useState({});
   //   Tracking the values and names
@@ -15,10 +18,12 @@ const SigninForm = () => {
   // Use useNavigate to redirect to the desired page
   const navigate = useNavigate();
 
+  const goTo = location?.state?.from?.pathname || "/dashboard";
+
   // Using useEffect to redirect users to the dashboard
   useEffect(() => {
-    user?._id && navigate("/dashboard");
-  }, [user?._id, navigate]);
+    user?._id && navigate(goTo);
+  }, [user?._id, navigate, goTo]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setFormInput({ ...formInput, [name]: value });

@@ -47,11 +47,12 @@ export const loginUser = (data) => {
 // Get User
 
 export const getUser = () => {
+  // calling database to get the users
   const obj = {
     method: "get",
     url: rootUrlEP + "/users/",
     headers: {
-      Authorization: accessJWT(),
+      Authorization: accessJWT(), // passing the accesstoken
     },
   };
   return apiProcessor(obj);
