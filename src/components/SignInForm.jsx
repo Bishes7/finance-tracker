@@ -9,7 +9,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
   const location = useLocation(); //to locate the path
-  console.log(location);
 
   const { user, setUser } = useUser(); //destructure the value of the useUser
   const [formInput, setFormInput] = useState({});
@@ -20,9 +19,9 @@ const SigninForm = () => {
 
   const goTo = location?.state?.from?.pathname || "/dashboard";
 
-  // Using useEffect to redirect users to the dashboard
+  // Using useEffect to render the page
   useEffect(() => {
-    user?._id && navigate(goTo);
+    user?._id && navigate(goTo); // redirects us to the desired page
   }, [user?._id, navigate, goTo]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
