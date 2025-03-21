@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import FinancialTips from "../components/FinancialTips";
 import SignUpForm from "../components/SignUpForm";
-import TransactionForm from "../components/TransactionForm";
+import { TransactionForm } from "../components/TransactionForm";
 import TransactionTable from "../components/TransactionTable";
 
 // Actual Page
