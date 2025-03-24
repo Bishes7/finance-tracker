@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import FinancialTips from "../components/FinancialTips";
-import SignUpForm from "../components/SignUpForm";
+
 import { TransactionForm } from "../components/TransactionForm";
 import TransactionTable from "../components/TransactionTable";
+import { useUser } from "../components/context/UserContext";
 
 // Actual Page
 const Transactions = () => {
+  const { getTransactions } = useUser();
+  // using useeffect to render the transactions page
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded">
