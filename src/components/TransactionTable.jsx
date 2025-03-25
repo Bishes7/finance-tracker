@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useUser } from "./context/UserContext";
 import { Button, Form } from "react-bootstrap";
@@ -7,14 +7,30 @@ import { FaPlusCircle } from "react-icons/fa";
 const TransactionTable = () => {
   const { transactions } = useUser();
 
+  const [displayTransactions, setDisplayTransactions] = useState([]);
+
+  // Using useEffect to render the transactions in the table
+  useEffect(() => {
+    setDisplayTransactions(transactions);
+  }, [transactions]);
+
+  // Tracking the user typing
+  const handleOnType = (e) => {
+    const { value } = e.target;
+    const filteredArr = transactions.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setDisplayTransactions(filteredArr);
+  };
+
   return (
     <>
       <div className="d-flex justify-content-around pt-4 mb-4">
         <div className="fw-bold text-warning">
-          {transactions.length} transaction(s)
+          {displayTransactions.length} transaction(s)
         </div>
         <div>
-          <Form.Control type="text" />
+          <Form.Control type="text" onChange={handleOnType} />
         </div>
         <div>
           <Button>
@@ -34,8 +50,8 @@ const TransactionTable = () => {
           </tr>
         </thead>
         <tbody>
-          {transactions.length > 0 &&
-            transactions.map((item, i) => (
+          {displayTransactions.length > 0 &&
+            displayTransactions.map((item, i) => (
               <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>{item.createdAt.slice(0, 10)}</td>
@@ -67,7 +83,7 @@ const TransactionTable = () => {
 
             <td colSpan={2}>
               $
-              {transactions.reduce(
+              {displayTransactions.reduce(
                 (acc, item) =>
                   item.type === "income"
                     ? acc + item.amount

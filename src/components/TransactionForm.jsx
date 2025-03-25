@@ -4,6 +4,8 @@ import CustomInput from "./CustomInput";
 import { useForm } from "../CustomHook/useForm";
 import { toast } from "react-toastify";
 import { postTransaction } from "../helper/axiosHelper";
+import { getTransaction } from "../../../FinanceBackend/models/transaction/TransactionModel";
+import { useUser } from "./context/UserContext";
 
 // attributes of the form
 const initialstate = {
@@ -13,6 +15,7 @@ const initialstate = {
 };
 
 export const TransactionForm = () => {
+  const { getTransactions } = useUser();
   // Importing custom hooks
   const { handleOnChange, formInput, setFormInput } = useForm(initialstate);
 
@@ -25,7 +28,10 @@ export const TransactionForm = () => {
     const { status, message } = await pending;
     toast[status](message);
 
-    status === "success" && setFormInput(initialstate);
+    if (status === "success") {
+      setFormInput(initialstate);
+      getTransactions();
+    }
   };
 
   const inputField = [
