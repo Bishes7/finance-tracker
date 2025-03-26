@@ -7,6 +7,10 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [transactions, setTransactions] = useState([]);
 
+  const [show, setShow] = useState(false); // created a state
+
+  const toggleModal = (value) => setShow(value); //toggle
+
   // Function to fetch the transactions
   const getTransactions = async () => {
     const { status, transaction } = await fetchTransactions();
@@ -16,7 +20,14 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ user, setUser, transactions, getTransactions }}
+      value={{
+        user,
+        setUser,
+        transactions,
+        getTransactions,
+        toggleModal,
+        show,
+      }}
     >
       {children}
     </userContext.Provider>

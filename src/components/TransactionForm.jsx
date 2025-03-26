@@ -15,7 +15,7 @@ const initialstate = {
 };
 
 export const TransactionForm = () => {
-  const { getTransactions } = useUser();
+  const { getTransactions, toggleModal } = useUser();
   // Importing custom hooks
   const { handleOnChange, formInput, setFormInput } = useForm(initialstate);
 
@@ -31,6 +31,7 @@ export const TransactionForm = () => {
     if (status === "success") {
       setFormInput(initialstate);
       getTransactions();
+      toggleModal(false);
     }
   };
 

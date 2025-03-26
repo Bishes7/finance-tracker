@@ -4,10 +4,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import { TransactionForm } from "../components/TransactionForm";
 import TransactionTable from "../components/TransactionTable";
 import { useUser } from "../components/context/UserContext";
+import { CustomModal } from "../components/CustomModal";
 
 // Actual Page
 const Transactions = () => {
   const { getTransactions } = useUser();
+
   // using useeffect to render the transactions page
 
   useEffect(() => {
@@ -17,7 +19,9 @@ const Transactions = () => {
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded">
         <Col>
-          <TransactionForm />
+          <CustomModal>
+            <TransactionForm />
+          </CustomModal>
           <hr />
           <TransactionTable />
         </Col>

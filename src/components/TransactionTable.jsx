@@ -5,7 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 
 const TransactionTable = () => {
-  const { transactions } = useUser();
+  const { transactions, toggleModal } = useUser();
 
   const [displayTransactions, setDisplayTransactions] = useState([]);
 
@@ -37,8 +37,7 @@ const TransactionTable = () => {
           />
         </div>
         <div>
-          <Button>
-            {" "}
+          <Button onClick={() => toggleModal(true)}>
             <FaPlusCircle /> Add new transactions
           </Button>
         </div>
