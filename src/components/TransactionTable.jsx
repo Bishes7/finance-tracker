@@ -30,7 +30,11 @@ const TransactionTable = () => {
           {displayTransactions.length} transaction(s)
         </div>
         <div>
-          <Form.Control type="text" onChange={handleOnType} />
+          <Form.Control
+            type="text"
+            placeholder="Search Transaction"
+            onChange={handleOnType}
+          />
         </div>
         <div>
           <Button>
