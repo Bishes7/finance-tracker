@@ -9,6 +9,9 @@ const TransactionTable = () => {
 
   const [displayTransactions, setDisplayTransactions] = useState([]);
 
+  // Local State to store ids to delete
+  const [idsDelete, setIdsDelete] = useState([]);
+
   // Using useEffect to render the transactions in the table
   useEffect(() => {
     setDisplayTransactions(transactions);
@@ -22,6 +25,26 @@ const TransactionTable = () => {
     );
     setDisplayTransactions(filteredArr);
   };
+
+  const handleOnSelect = (e) => {
+    const { checked, value } = e.target;
+    console.log(checked, value);
+
+    if (value === "all") {
+      checked
+        ? setIdsDelete(displayTransactions.map((item, i) => item._id))
+        : setIdsDelete([]);
+      return;
+    }
+
+    if (checked) {
+      setIdsDelete([...idsDelete, value]);
+    } else {
+      setIdsDelete(idsDelete.filter((_id) => _id !== value));
+    }
+  };
+
+  console.log(idsDelete);
 
   return (
     <>
@@ -42,6 +65,14 @@ const TransactionTable = () => {
           </Button>
         </div>
       </div>
+      <div>
+        <Form.Check
+          label="Select All"
+          value="all"
+          onChange={handleOnSelect}
+          checked={displayTransactions.length === idsDelete.length}
+        />
+      </div>
       <Table striped hover>
         <thead>
           <tr>
@@ -57,7 +88,14 @@ const TransactionTable = () => {
             displayTransactions.map((item, i) => (
               <tr key={item._id}>
                 <td>{i + 1}</td>
-                <td>{item.createdAt.slice(0, 10)}</td>
+                <td>
+                  <Form.Check
+                    label={item.createdAt.slice(0, 10)}
+                    value={item._id}
+                    onChange={handleOnSelect}
+                    checked={idsDelete.includes(item._id)}
+                  />
+                </td>
                 <td>{item.title}</td>
                 {item.type === "expenses" && (
                   <>
@@ -97,6 +135,14 @@ const TransactionTable = () => {
           </tr>
         </tbody>
       </Table>
+
+      {idsDelete.length > 0 && (
+        <div className="d-grid ">
+          <Button className="btn btn-danger">
+            Delete {idsDelete.length} transactions
+          </Button>
+        </div>
+      )}
     </>
   );
 };
