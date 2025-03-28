@@ -3,9 +3,11 @@ import Table from "react-bootstrap/Table";
 import { useUser } from "./context/UserContext";
 import { Button, Form } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
+import { deleteTransactions } from "../helper/axiosHelper";
+import { toast } from "react-toastify";
 
 const TransactionTable = () => {
-  const { transactions, toggleModal } = useUser();
+  const { transactions, toggleModal, getTransactions } = useUser();
 
   const [displayTransactions, setDisplayTransactions] = useState([]);
 
@@ -45,6 +47,24 @@ const TransactionTable = () => {
   };
 
   console.log(idsDelete);
+
+  // Function to Delete Transactions
+  const handleOnDelete = async () => {
+    if (
+      confirm(
+        `Are you sure you  want to delete ${idsDelete.length} transactions`
+      )
+    ) {
+      const pending = deleteTransactions(idsDelete);
+      toast.promise(pending, { pending: "Please wait" });
+
+      const { status, message } = await pending;
+      toast[status](message);
+
+      status === "success" && getTransactions();
+      setIdsDelete([]);
+    }
+  };
 
   return (
     <>
@@ -138,7 +158,7 @@ const TransactionTable = () => {
 
       {idsDelete.length > 0 && (
         <div className="d-grid ">
-          <Button className="btn btn-danger">
+          <Button variant="danger" onClick={handleOnDelete}>
             Delete {idsDelete.length} transactions
           </Button>
         </div>
