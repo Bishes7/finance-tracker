@@ -20,3 +20,11 @@ td {
 .expenses {
   color: red !important;
 }
+
+/* Mobile Rresponsive */
+@media (max-width: 700px) {
+  .chart-item {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

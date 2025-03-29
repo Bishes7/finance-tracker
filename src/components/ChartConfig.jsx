@@ -4,6 +4,7 @@ import {
   LinearScale,
   BarElement,
   LineElement,
+  PointElement,
   ArcElement,
   Title,
   Tooltip,
@@ -18,5 +19,6 @@ ChartJS.register(
   ArcElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  PointElement
 );
