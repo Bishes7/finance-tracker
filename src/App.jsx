@@ -11,6 +11,7 @@ import { Auth } from "./auth/Auth";
 import { useEffect } from "react";
 import { useUser } from "./components/context/UserContext";
 import { autoLogin } from "./utils/Users";
+import "./components/ChartConfig";
 
 function App() {
   const { user, setUser } = useUser(); // desctructuring from context api
