@@ -12,6 +12,7 @@ import { FaWeight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useUser } from "../src/components/context/UserContext";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { user, setUser } = useUser();
@@ -35,10 +36,22 @@ const Header = () => {
     >
       <Container>
         <Navbar.Brand href="#home">
-          <FaWeight /> Finance Tracker
+          <FaWeight />{" "}
+          <span className="fw-bolder text-info ">Finance Tracker</span>
         </Navbar.Brand>
         {user?.name && (
-          <div className="text-warning fw-bolder ">Welcome {user.name}</div>
+          <motion.span
+            style={{
+              fontFamily: "cursive",
+              fontSize: "22px",
+              fontWeight: "bolder",
+            }}
+            initial={{ scale: 0.5, rotate: -10, opacity: 0 }}
+            animate={{ scale: 1.2, rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {user.name}
+          </motion.span>
         )}
 
         <Navbar.Toggle
@@ -50,34 +63,38 @@ const Header = () => {
             {user?._id ? (
               <>
                 <Link
-                  className="nav-link"
+                  className="nav-link fw-bold"
                   to="/dashboard"
                   onClick={() => setShowMenu(false)}
                 >
                   Dashboard <GrDashboard />
                 </Link>
                 <Link
-                  className="nav-link"
+                  className="nav-link fw-bold"
                   to="/transactions"
                   onClick={() => setShowMenu(false)}
                 >
                   Transactions <GiCash />
                 </Link>
-                <Link className="nav-link" to="/" onClick={handleOnLogOut}>
+                <Link
+                  className="nav-link fw-bold"
+                  to="/"
+                  onClick={handleOnLogOut}
+                >
                   logOUT <ImExit />
                 </Link>
               </>
             ) : (
               <>
                 <Link
-                  className="nav-link"
+                  className="nav-link fw-bold"
                   to="/signup"
                   onClick={() => setShowMenu(false)}
                 >
                   SignUP <MdCreate />
                 </Link>
                 <Link
-                  className="nav-link"
+                  className="nav-link fw-bold"
                   to="/"
                   onClick={() => setShowMenu(false)}
                 >

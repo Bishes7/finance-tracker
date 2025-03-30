@@ -28,3 +28,17 @@ td {
     max-width: 100% !important;
   }
 }
+
+.navbar {
+  background: linear-gradient(45deg, #ff416d7a, #ff4b2bb0);
+  animation: gradientAnimation 6s infinite alternate;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background: linear-gradient(45deg, #ff416daf, #ff4b2bc4);
+  }
+  100% {
+    background: linear-gradient(45deg, #ff4b2bcb, #ff416ddc);
+  }
+}
