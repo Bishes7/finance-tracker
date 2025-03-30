@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useUser } from "../context/UserContext";
 
-const BarChart = ({ transactions }) => {
-  // Month names
+const BarChart = () => {
+  const { transactions } = useUser(); // Get transactions from context
+  const [data, setData] = useState(null); // Initialize data as null to prevent rendering issues
+
+  // Create an array of months
   const months = [
     "Jan",
     "Feb",
@@ -18,30 +22,54 @@ const BarChart = ({ transactions }) => {
     "Dec",
   ];
 
-  //   Initialize an empty array to hold the total amouts for each months
-  const monthlyAmounts = new Array(12).fill(0); // created array with 12 zeros for each months
+  useEffect(() => {
+    if (!transactions) return; // Prevent processing if transactions are not available
 
-  // looping through each transactions to accumulate the amount for correct  months
-  transactions.map((transaction) => {
-    const transactionMonth = new Date(transaction.tdate).getMonth(); //getting months index
+    // Initialize arrays to store monthly income and expenses
+    const income = new Array(12).fill(0);
+    const expenses = new Array(12).fill(0);
 
-    //Adding transaction amount to correct month
-    monthlyAmounts[transactionMonth] += transaction.amount;
-  });
-  // Define the chart data
-  const chartData = {
-    labels: months,
-    datasets: [
-      {
-        label: "Monthly Transactions",
-        data: monthlyAmounts,
-        backgroundColor: "rgba(75, 192, 600, 0.6)",
-      },
-    ],
-  };
+    // Loop through transactions and sum income and expenses by month
+    transactions.map((transaction) => {
+      const month = new Date(transaction.tdate).getMonth(); // Get the month (0-11)
+
+      if (transaction.type === "income") {
+        income[month] += transaction.amount; // Add to the corresponding month's income
+      } else if (transaction.type === "expenses") {
+        expenses[month] += transaction.amount; // Add to the corresponding month's expenses
+      }
+    });
+
+    // Set the data for the chart only when we have valid transaction data
+    setData({
+      labels: months, // Set the months as labels
+      datasets: [
+        {
+          label: "Income",
+          data: income, // Data for income
+          backgroundColor: "rgba(75, 192, 192, 0.6)", // Color for income bars
+        },
+        {
+          label: "Expenses",
+          data: expenses, // Data for expenses
+          backgroundColor: "rgba(255, 99, 132, 0.6)", // Color for expense bars
+        },
+      ],
+    });
+  }, [transactions]); // Recalculate when transactions change
+
+  if (!data) {
+    // Render a loading message or spinner if data is not ready
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div style={{ width: "100%", height: "100%" }}>
-      <Bar data={chartData} />
+    <div>
+      <h2>Income vs Expenses</h2>
+      <Bar
+        data={data}
+        options={{ responsive: true, plugins: { legend: { position: "top" } } }}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootUrlEP = "http://localhost:8000/api/v1";
+const rootUrlEP = import.meta.env.VITE_ROOT_API + "/api/v1";
 
 // Function to call the JWT Token
 const accessJWT = () => {

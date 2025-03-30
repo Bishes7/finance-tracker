@@ -30,7 +30,6 @@ const TransactionTable = () => {
 
   const handleOnSelect = (e) => {
     const { checked, value } = e.target;
-    console.log(checked, value);
 
     if (value === "all") {
       checked
@@ -45,8 +44,6 @@ const TransactionTable = () => {
       setIdsDelete(idsDelete.filter((_id) => _id !== value));
     }
   };
-
-  console.log(idsDelete);
 
   // Function to Delete Transactions
   const handleOnDelete = async () => {

@@ -39,7 +39,6 @@ const SigninForm = () => {
     const { status, message, user, accessToken } = await pendingResp;
     toast[status](message);
 
-    console.log(user, accessToken);
     setUser(user);
 
     localStorage.setItem("accessToken", accessToken);
