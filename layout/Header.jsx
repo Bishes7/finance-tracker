@@ -37,8 +37,9 @@ const Header = () => {
       <Container>
         <Navbar.Brand href="#home">
           <FaWeight />{" "}
-          <span className="fw-bolder text-info ">Finance Tracker</span>
+          <span className="fw-bolder text-info mx-3 ">Finance Tracker</span>
         </Navbar.Brand>
+
         {user?.name && (
           <motion.span
             style={{
@@ -50,10 +51,9 @@ const Header = () => {
             animate={{ scale: 1.2, rotate: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {user.name}
+            Welcome {user.name}
           </motion.span>
         )}
-
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           onClick={() => setShowMenu(true)}

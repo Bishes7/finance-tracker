@@ -30,7 +30,7 @@ const LineChart1 = ({ transactions }) => {
     ],
   };
   return (
-    <div style={{ width: "500px", height: "450px" }}>
+    <div style={{ width: "450px", height: "450px" }}>
       <Line data={chartData} />;
     </div>
   );

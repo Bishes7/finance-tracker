@@ -21,24 +21,33 @@ const DashBoard = () => {
       <h2>DashBoard</h2>
       <hr />
 
-      <div className="mt-5 charts-container d-flex justify-content-between ">
-        <div className="chart-item">
-          <h3>Pie Chart</h3>
-          <PieChart transactions={transactions} />
-        </div>
+      <div className="mt-5  ">
+        <Row className="d-flex justify-content-between  ">
+          {/* Pie Chart */}
+          <Col xs={12} sm={6} md={3} className="chart-item mb-4 ">
+            <h3>Pie Chart</h3>
+            <PieChart transactions={transactions} />
+          </Col>
 
-        <div className="chart-item">
-          <h3> Income Chart</h3>
-          <LineChart transactions={transactions} />
-        </div>
+          {/* Income Chart */}
+          <Col xs={12} sm={6} md={3} className="chart-item mb-4 ">
+            <h3>Income Chart</h3>
+            <LineChart transactions={transactions} />
+          </Col>
 
-        <div className="chart-item">
-          <h3>Expense Chart</h3>
-          <LineChart1 transactions={transactions} />
-        </div>
-      </div>
-      <div>
-        <BarChart transactions={transactions} />
+          {/* Expense Chart */}
+          <Col xs={12} sm={6} md={3} className="chart-item mb-4 ">
+            <h3>Expense Chart</h3>
+            <LineChart1 transactions={transactions} />
+          </Col>
+        </Row>
+
+        {/* Bar Chart */}
+        <Row>
+          <Col xs={12} className="mb-4 ">
+            <BarChart transactions={transactions} />
+          </Col>
+        </Row>
       </div>
     </div>
   );
