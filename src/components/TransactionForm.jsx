@@ -4,7 +4,7 @@ import CustomInput from "./CustomInput";
 import { useForm } from "../CustomHook/useForm";
 import { toast } from "react-toastify";
 import { postTransaction } from "../helper/axiosHelper";
-import { getTransaction } from "../../../FinanceBackend/models/transaction/TransactionModel";
+
 import { useUser } from "./context/UserContext";
 
 // attributes of the form
