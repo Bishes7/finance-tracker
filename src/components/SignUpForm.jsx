@@ -27,6 +27,15 @@ const SignUpForm = () => {
       return toast.error("Password doesnot match");
     }
 
+    //regular expression to check if the password has atleast one upper and number
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).+$/;
+
+    if (!passwordRegex.test(rest.password)) {
+      return toast.error(
+        "Password must contain at least one uppercase letter and one number"
+      );
+    }
+
     const pending = PostNewuser(rest);
     toast.promise(pending, {
       pending: "Please wait",
