@@ -1,12 +1,36 @@
-# React + Vite
+# 💰 Finance Tracker (Frontend) - MERN Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** of the Finance Tracker app, built using **React.js**. It provides an intuitive and user-friendly UI for managing finances.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Track income and expenses
+- Secure authentication (JWT)
+- Categorized financial records
+- Interactive charts for spending insights
+- Fully responsive design
+- Add and remove transactions
 
-## Expanding the ESLint configuration
+## Built With
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js (Vite)
+- Context API (State Management)
+- Axios (API Calls)
+- Chart.js (Data Visualization)
+- Bootstrap CSS (Styling)
+
+## Installation & Setup
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/Bishes7/finance-tracker.git
+   ```
+2. Install dependencies:
+   npm install
+
+3. Start the development server:
+   npm run dev
+
+# Contact
+
+Want to connect? Reach me at specialbishes9@gmail.com or on https://www.linkedin.com/in/bishes-adhikari

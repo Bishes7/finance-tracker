@@ -1,6 +1,6 @@
 .wrapper {
   min-height: 100vh;
-  background: #000;
+  background: rgba(0, 0, 0, 0.912);
   color: rgba(255, 255, 255, 0.858);
 }
 
@@ -45,6 +45,6 @@ td {
 
 .btn:hover {
   transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
   background-color: #ff4b2b;
 }
