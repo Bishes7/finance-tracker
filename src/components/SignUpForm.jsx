@@ -27,7 +27,11 @@ const SignUpForm = () => {
       return toast.error("Password doesnot match");
     }
 
-    const { status, message } = await PostNewuser(rest);
+    const pending = PostNewuser(rest);
+    toast.promise(pending, {
+      pending: "Please wait",
+    });
+    const { status, message } = await pending;
     toast[status](message);
 
     status === "success" && setFormInput(initialstate);
